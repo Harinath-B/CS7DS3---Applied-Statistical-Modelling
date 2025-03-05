@@ -209,3 +209,11 @@ Thus,
     $$\hat{\theta} = \sqrt{\frac{k}{n}}$$
 where; $\hat{\theta}$ is the Maximum Likelihood estimate for $\theta$
 
+## iii
+- The system failure is given by $\theta_1$ which is a non-linear transformation of $\theta$($\theta_1= \theta^2$), and the likelihood (in terms of $\theta$) is given by,
+    $$L(\theta|y) = \binom{n}{k}\theta^{2k}(1-\theta^2)^{n-k}$$
+- The likelihood in terms of $\theta_1$ is binomial and the parameter can be modeled with a beta distribution by the beta-binomial conjugacy.
+- But the likelihood in terms of $\theta$ is non-linear in $\theta$ and using a beta prior ($Be(a, b)$) for $\theta$ results in the posterior distribution,
+    $$P(\theta|y, a, b) \propto \theta^{2k} (1-\theta^2) \theta^{a-1} \theta^{b-1}$$
+- The posterior is not in the form of a beta distribution and thus the conjugacy is lost
+- Thus a closed-form solution is not possible, and although Monte-Carlo methods can still be used to estimate the posterior,  it is relatively difficult to estimate $\theta$ using a Bayesian approach
