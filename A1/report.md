@@ -1,3 +1,13 @@
+
+**CS7DS3 Applied Statistical Modelling**  
+*Assignment 1*
+
+Name: Harinath Babu 
+
+Student ID: 24340502
+
+Course: MSc in Computer Science - Data Science
+
 # Q1
 $S_2$ fails iff both components fails,
     $$P(S_2\ fails) = P(x_1\ fails\ and\ x_2\ fails)$$
@@ -33,12 +43,12 @@ Variance,
 This was done via R code using the pbinom() function. The value $P(5 <= A <= 10)$ was computed as $P(A <= 10) - P(A < 5)$ which is the same as $P(A <= 10) - P(A <= 4)$ for our trials
 using `pbinom(10, 1000, 0.0064) - pbinom(4, 1000, 0.0064)`.
 
-![alt text](image.png)
+![ ](image.png)
 
 ## iii
 This value was computed using qbinom() function in R. The value of $k^*$ such that $P(A<= k^*) >= 0.95$ was computed as `qbinom(0.95, 1000, 0.0064)` and the result was checked to be strictly greater than the 95% percentile to satisfy $P(A<= k^*) > 0.95$ and the result was $k*$ = 11 was strictly greater than the 95th percentile.
 
-![alt text](image-1.png)
+![ ](image-1.png)
 
 ---
 
@@ -89,7 +99,7 @@ Success here is the component failure and failure is the component non-failure.
     This tells us that the most likely value of $\theta$ is 6.45% which is consistent with the expert opinion.
 
 - The distribution $Be(3, 30)$ is highly skewed towards lower values of $\theta$ (since $a << b$). The plot was created by generating the distribution using `dbeta(x, 3, 30)` with x ranging from 0 to 1 and plotting the results using `plot()`.   
-![alt text](image-2.png)
+![ ](image-2.png)
 
 - The probabilty of the value being over 20% (stated to be highly unlikely) under this prior is,
     $$P(\theta >= 0.20) \approx 0.03169$$
@@ -123,13 +133,13 @@ Thus the posterior distribution is $\theta|x \sim Be(6, 52)$
     This tells us that the most likely value of $\theta$ is 8.93% which has also increased due to the observed failures.
 
 - The distribution $Be(6, 52)$ is also highly skewed towards lower values of $\theta$ (since $a << b$). The plot was created by generating the distribution using `dbeta(x, 6, 52)` with x ranging from 0 to 1 and plotting the results using `plot()`.    
-![alt text](image-3.png)
+![ ](image-3.png)
 
 ## iii
 - The prior mean was 0.09091(~9%) and mode was 0.06452(~6.45%), both of which which increased a bit in the posterior to 0.1035(~10.4%) and 0.0893(~8.93%).
 - The variance has decreased from 0.00243(~0.24%) to 0.00157(~0.15%), which shows an increase in our certainty.
 - While both the distributions are skewed towards lower values, the posterior is narrower. The plot was created by generating the distribution using `dbeta(x, 3, 30)` & `dbeta(x, 6, 52)` with x ranging from 0 to 1 and plotting the results using `plot()`.    
-![alt text](image-4.png)
+![ ](image-4.png)
 
 - The prior was strong, but not too strong as the observed data was still able to influence the posterior in a non-insignificant way.
 - Since the data consisted only of 25 observations, a bit less the number of pseudo-observations in the prior (33), the selected prior is slightly more informative than the data alone in the construction of the prior but not by a huge margin as seen by the data's ability to influence the posterior
@@ -144,10 +154,10 @@ Thus the posterior distribution is $\theta|x \sim Be(6, 52)$
 - The sampled values are transformed into $\theta_2$ as `mc_post_theta_2 <- (2 * mc_post_theta) - (mc_post_theta ^ 2)` since $\theta_2 = 2\theta - \theta^2$             
 
 - The sampled values are transformed into $\theta_3$ as `mc_post_theta_3 <- (mc_post_theta ^ 4) - (4 * mc_post_theta ^ 3) + (4 * mc_post_theta^2)` since $\theta_3 = \theta^4 - 4\theta^3 + 4\theta^2$     
-![alt text](image-6.png)
+![ ](image-6.png)
 
 - The mean, variance and the 95% interval for the posteriors of $\theta_1, \theta_2, \theta_3$ are computed from the derived values by using `mean(), var(), quantile(c(0.025, 0.975))`   
-![alt text](image-7.png)
+![ ](image-7.png)
 
 - The posterior of $\theta_1$ is highly right-skewed distribution with a mean much smaller than that of $\theta$ ($0.0123 < 0.104$), the variance is also smaller ($9.17307e-05 < 0.0016$) so the values are highly concentrated around the mean.
 
