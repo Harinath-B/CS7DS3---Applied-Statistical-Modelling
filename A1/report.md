@@ -31,7 +31,7 @@ Variance,
 
 ## ii
 This was done via R code using the pbinom() function. The value $P(5 <= A <= 10)$ was computed as $P(A <= 10) - P(A < 5)$ which is the same as $P(A <= 10) - P(A <= 4)$ for our trials
-using `pbinom(10, 1000, 0.0064) - pbinom(5, 1000, 0.0064)`.
+using `pbinom(10, 1000, 0.0064) - pbinom(4, 1000, 0.0064)`.
 
 ![alt text](image.png)
 
@@ -88,8 +88,7 @@ Success here is the component failure and failure is the component non-failure.
     $$mode \approx 0.06452$$
     This tells us that the most likely value of $\theta$ is 6.45% which is consistent with the expert opinion.
 
-- The distribution $Be(3, 30)$ is highly skewed towards lower values of $\theta$ (since $a << b$). The plot was created by generating the distribution using `dbeta(x, 3, 30)` with x ranging from 0 to 1 and plotting the results using `plot()`.
-
+- The distribution $Be(3, 30)$ is highly skewed towards lower values of $\theta$ (since $a << b$). The plot was created by generating the distribution using `dbeta(x, 3, 30)` with x ranging from 0 to 1 and plotting the results using `plot()`.   
 ![alt text](image-2.png)
 
 - The probabilty of the value being over 20% (stated to be highly unlikely) under this prior is,
@@ -123,15 +122,13 @@ Thus the posterior distribution is $\theta|x \sim Be(6, 52)$
     $$mode \approx 0.0893$$
     This tells us that the most likely value of $\theta$ is 8.93% which has also increased due to the observed failures.
 
-- The distribution $Be(6, 52)$ is also highly skewed towards lower values of $\theta$ (since $a << b$). The plot was created by generating the distribution using `dbeta(x, 6, 52)` with x ranging from 0 to 1 and plotting the results using `plot()`.
-
+- The distribution $Be(6, 52)$ is also highly skewed towards lower values of $\theta$ (since $a << b$). The plot was created by generating the distribution using `dbeta(x, 6, 52)` with x ranging from 0 to 1 and plotting the results using `plot()`.    
 ![alt text](image-3.png)
 
 ## iii
 - The prior mean was 0.09091(~9%) and mode was 0.06452(~6.45%), both of which which increased a bit in the posterior to 0.1035(~10.4%) and 0.0893(~8.93%).
 - The variance has decreased from 0.00243(~0.24%) to 0.00157(~0.15%), which shows an increase in our certainty.
-- While both the distributions are skewed towards lower values, the posterior is narrower. The plot was created by generating the distribution using `dbeta(x, 3, 30)` & `dbeta(x, 6, 52)` with x ranging from 0 to 1 and plotting the results using `plot()`
-
+- While both the distributions are skewed towards lower values, the posterior is narrower. The plot was created by generating the distribution using `dbeta(x, 3, 30)` & `dbeta(x, 6, 52)` with x ranging from 0 to 1 and plotting the results using `plot()`.    
 ![alt text](image-4.png)
 
 - The prior was strong, but not too strong as the observed data was still able to influence the posterior in a non-insignificant way.
