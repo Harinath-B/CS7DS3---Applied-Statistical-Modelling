@@ -10,11 +10,11 @@ Course: MSc in Computer Science - Data Science
 
 # Q1
 $S_2$ fails iff both components fails,
-    $$P(S_2\ fails) = P(x_1\ fails\ and\ x_2\ fails)$$
+    $$\mathbb{P}(S_2\ fails) = \mathbb{P}(x_1\ fails\ and\ x_2\ fails)$$
 Given, 
-    $$P(x_1\ fails) = P(x_2\ fails) = \theta$$
+    $$\mathbb{P}(x_1\ fails) = \mathbb{P}(x_2\ fails) = \theta$$
 Since $x_1$ & $x_2$ failing are independent, 
-    $$P(S_2\ fails) = P(x_1\ fails) * P(x_2\ fails)$$
+    $$\mathbb{P}(S_2\ fails) = \mathbb{P}(x_1\ fails) * \mathbb{P}(x_2\ fails)$$
     $$\theta_1 = \theta * \theta$$
     $$\theta_1 = \theta ^ 2$$
 
@@ -35,18 +35,18 @@ Expectation,
     $$\mathbb{E}[A] = 1000 * 0.0064$$
     $$\mathbb{E}[A] = 6.4$$
 Variance,
-    $$\mathbb{Var}[A] = n * \theta_1 * (1 - \theta_1)$$
-    $$\mathbb{Var}[A] = 1000 * 0.0064 * (1-0.0064)$$
-    $$\mathbb{Var}[A] = 6.35904$$
+    $$\mathbb{V}ar[A] = n * \theta_1 * (1 - \theta_1)$$
+    $$\mathbb{V}ar[A] = 1000 * 0.0064 * (1-0.0064)$$
+    $$\mathbb{V}ar[A] = 6.35904$$
 
 ## ii
-This was done via R code using the pbinom() function. The value $P(5 <= A <= 10)$ was computed as $P(A <= 10) - P(A < 5)$ which is the same as $P(A <= 10) - P(A <= 4)$ for our trials
+This was done via R code using the pbinom() function. The value $\mathbb{P}(5 <= A <= 10)$ was computed as $\mathbb{P}(A <= 10) - \mathbb{P}(A < 5)$ which is the same as $\mathbb{P}(A <= 10) - \mathbb{P}(A <= 4)$ for our trials
 using `pbinom(10, 1000, 0.0064) - pbinom(4, 1000, 0.0064)`.
 
 ![ ](image.png)
 
 ## iii
-This value was computed using qbinom() function in R. The value of $k^*$ such that $P(A<= k^*) >= 0.95$ was computed as `qbinom(0.95, 1000, 0.0064)` and the result was checked to be strictly greater than the 95% percentile to satisfy $P(A<= k^*) > 0.95$ and the result was $k*$ = 11 was strictly greater than the 95th percentile.
+This value was computed using qbinom() function in R. The value of $k^*$ such that $\mathbb{P}(A<= k^*) >= 0.95$ was computed as `qbinom(0.95, 1000, 0.0064)` and the result was checked to be strictly greater than the 95% percentile to satisfy $\mathbb{P}(A<= k^*) > 0.95$ and the result was $k*$ = 11 was strictly greater than the 95th percentile.
 
 ![ ](image-1.png)
 
@@ -55,15 +55,15 @@ This value was computed using qbinom() function in R. The value of $k^*$ such th
 # Q3
 ## i
 $S_2$ fails if either of the components fail (i.e) works iff both components work,
-    $$P(S_2\ works) = (1-\theta) * (1-\theta) = (1-\theta) ^ 2$$
-    $$P(S_2\ fails) = \theta_2 = 1 - (1-\theta) ^ 2$$
+    $$\mathbb{P}(S_2\ works) = (1-\theta) * (1-\theta) = (1-\theta) ^ 2$$
+    $$\mathbb{P}(S_2\ fails) = \theta_2 = 1 - (1-\theta) ^ 2$$
     $$\theta_2 = 1 - (1-\theta) ^ 2$$
     $$\theta_2 = 1 - (1 + \theta^2 -  2\theta)$$
     $$\theta_2 = 2\theta - \theta^2$$
 
 ## ii
 $S_3$ fails if both of its parallel components fails, where each parallel component is composed of 2 serial subcomponents $x_i$,
-    $$P(S_3\ fails) = P(Parellel\ subcomponent\ 1\ fails\ and\ Parellel\ subcomponent\ 2\ fails)$$
+    $$\mathbb{P}(S_3\ fails) = \mathbb{P}(Parellel\ subcomponent\ 1\ fails\ and\ Parellel\ subcomponent\ 2\ fails)$$
     $$\theta_3 = \theta_2 * \theta_2 = \theta_2^2$$
     $$\theta_3 = [2\theta - \theta^2] ^ 2$$
     $$\theta_3 = 4\theta^2 + \theta^4 - 2\theta^2*(2\theta)$$
@@ -102,7 +102,7 @@ Success here is the component failure and failure is the component non-failure.
 ![ ](image-2.png)
 
 - The probabilty of the value being over 20% (stated to be highly unlikely) under this prior is,
-    $$P(\theta >= 0.20) \approx 0.03169$$
+    $$\mathbb{P}(\theta >= 0.20) \approx 0.03169$$
     The value was computed using pbeta() as `1 - pbeta(0.20, 3, 30)`. This gives approximately a 3.2% chance for $\theta$ values over 20% and is thus consistent with expert opinion.
 
 *The chosen prior is thus a good match and is consistent with the expert opinion. Thus it can be used as the prior to model the parameter distribution.* 
@@ -142,11 +142,11 @@ Thus the posterior distribution is $\theta|x \sim Be(6, 52)$
 ![ ](image-4.png)
 
 - The prior was strong, but not too strong as the observed data was still able to influence the posterior in a non-insignificant way.
-- Since the data consisted only of 25 observations, a bit less the number of pseudo-observations in the prior (33), the selected prior is slightly more informative than the data alone in the construction of the prior but not by a huge margin as seen by the data's ability to influence the posterior
+- Since the data consisted only of 25 observations, a bit less the number of pseudo-observations in the prior (33), the selected prior is slightly more informative than the data alone in the construction of the posterior but not by a huge margin as seen by the data's ability to influence the posterior.
 
 ## iv
 
-*The posterior distributions $P(\theta_1|x, \theta)$, $P(\theta_2|x, \theta)$, $P(\theta_3|x, \theta)$ are constructed by Monte-Carlo sampling of $\theta$ from the posterior distribution $P(\theta|x)$ and transformation of the sampled values in terms of $\theta_1$, $\theta_2$, and $\theta_3$*
+*The posterior distributions $\mathbb{P}(\theta_1|x, \theta)$, $\mathbb{P}(\theta_2|x, \theta)$, $\mathbb{P}(\theta_3|x, \theta)$ are constructed by Monte-Carlo sampling of $\theta$ from the posterior distribution $\mathbb{P}(\theta|x)$ and transformation of the sampled values in terms of $\theta_1$, $\theta_2$, and $\theta_3$*
 - 100000 values from the posterior of $\theta_1$ are sampled using `rbeta(1e5, 6, 52)`. All the plots in this section are made using `hist(freq=False)` to plot the densities histogram.
 
 - The sampled values are transformed into $\theta_1$ as `mc_post_theta_1 <- mc_post_theta ^ 2` since $\theta_1 = \theta^2$      
@@ -169,11 +169,11 @@ Thus the posterior distribution is $\theta|x \sim Be(6, 52)$
 
 # Q5
 ## i
-The probability of failure of a $S_3$ system is given by the posterior $P(\theta_3|x)$. The 1000 $S_3$ systems can be modeled as a binomial distribution with $n = 1000$ and probability $P(\theta_3|x)$. 
+The probability of failure of a $S_3$ system is given by the posterior $\mathbb{P}(\theta_3|x)$. The 1000 $S_3$ systems can be modeled as a binomial distribution with $n = 1000$ and probability $\mathbb{P}(\theta_3|x)$. 
 - Monte Carlo samples (100000) are drawn from this distribution using the `rbinom()` function each sample simulating the failures from $n = 1000$ trials with the probabilities taken from the $\theta_3$ estimated from Monte Carlo samples of $\theta$ with each sample from the binomial distribution using one of the probabilities from the $\theta_3$ distribution.
 - The simulated failures are used to find the expected payments using `ifelse()` conditions for all the samples.
 - The Expected price can be computed as the average price over the samples,
-    $$E[Price] = \frac{1}{N} \sum_{i=1}^{N} Price_i$$
+    $$\mathbb{E}[Price] = \frac{1}{N} \sum_{i=1}^{N} Price_i$$
     and is computed as `sum(mc_post_payments) / length((mc_post_payments))` and the result expected payments is  **924.81** (approx).
 
 ## ii
@@ -188,20 +188,20 @@ The probability of failure of a $S_3$ system is given by the posterior $P(\theta
 
 # Q6
 
-Given there are $n$ systems with $k$ failures and the probability of each $S_1$ system failing is given by $\theta_1$. The observed data follow a Binomial distribution $y = {y_1, y_2,...., y_n} \sim Binom(n, \theta_1)$.
+Given there are $n$ systems with $k$ failures and the probability of each $S_1$ system failing is given by $\theta_1$. The observed data follow a Binomial distribution $y \sim Binom(n, \theta_1)$.
 
 ## i
 The lieklihood function is, 
-    $$L(\theta_1|y) = P(y|\theta_1) = \binom{n}{k}\theta_1^k(1-\theta_1)^{n-k}$$
+    $$\mathbb{L}(\theta_1|y) = \mathbb{P}(y|\theta_1) = \binom{n}{k}\theta_1^k(1-\theta_1)^{n-k}$$
 In terms of $\theta$ (since $\theta_1 = \theta^2$),
-    $$L(\theta|y) = P(y|\theta) = \binom{n}{k}(\theta^2)^k(1-\theta^2)^{n-k}$$
-    $$L(\theta|y) = \binom{n}{k}\theta^{2k}(1-\theta^2)^{n-k}$$
+    $$\mathbb{L}(\theta|y) = \mathbb{P}(y|\theta) = \binom{n}{k}(\theta^2)^k(1-\theta^2)^{n-k}$$
+    $$\mathbb{L}(\theta|y) = \binom{n}{k}\theta^{2k}(1-\theta^2)^{n-k}$$
 
 ## ii
 The likelihood function is,
-    $$L(\theta|y) = \binom{n}{k}\theta^{2k}(1-\theta^2)^{n-k}$$
+    $$\mathbb{L}(\theta|y) = \binom{n}{k}\theta^{2k}(1-\theta^2)^{n-k}$$
 Taking the log likelihood,
-    $$l = log (L) = log\ \binom{n}{k} + log\  \theta^{2k} + log\ (1-\theta^2)^{n-k}$$
+    $$l = log (\mathbb{L}) = log\ \binom{n}{k} + log\  \theta^{2k} + log\ (1-\theta^2)^{n-k}$$
 The term $log\ \binom{n}{k}$ is a constant with respect to $\theta$,
     $$l = 2k\ log(\theta) + (n - k)\ log(1 - \theta^2) + c$$
 Taking the derivative of $l$ with respect to $\theta$,
@@ -219,9 +219,9 @@ where; $\hat{\theta}$ is the Maximum Likelihood estimate for $\theta$.
 
 ## iii
 - The system failure is given by $\theta_1$ which is a non-linear transformation of $\theta$($\theta_1= \theta^2$), and the likelihood (in terms of $\theta$) is given by,
-    $$L(\theta|y) = \binom{n}{k}\theta^{2k}(1-\theta^2)^{n-k}$$
+    $$\mathbb{L}(\theta|y) = \binom{n}{k}\theta^{2k}(1-\theta^2)^{n-k}$$
 - The likelihood in terms of $\theta_1$ is binomial and the parameter can be modeled with a beta distribution by the beta-binomial conjugacy.
 - But the likelihood in terms of $\theta$ is non-linear in $\theta$ and using a beta prior ($Be(a, b)$) for $\theta$ results in the posterior distribution,
-    $$P(\theta|y, a, b) \propto \theta^{2k} (1-\theta^2) \theta^{a-1} \theta^{b-1}$$
+    $$\mathbb{P}(\theta|y, a, b) \propto \theta^{2k} (1-\theta^2) \theta^{a-1} \theta^{b-1}$$
 - The posterior is not in the form of a beta distribution and thus the conjugacy is lost.
 - Thus a closed-form solution is not possible, and although Monte-Carlo methods can still be used to estimate the posterior,  it is relatively difficult to estimate $\theta$ using a Bayesian approach.
