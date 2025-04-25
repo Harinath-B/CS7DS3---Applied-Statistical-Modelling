@@ -11,12 +11,13 @@ Given that the time $T$ can be modeled using a exponential distribution as,
 This can be rewritten as,
     $$p(t|\theta) = 1 . \theta\ exp(-\theta t)$$
 Which resembles the form of the standard exponential family with,  
-        $g(\theta) = \theta$  
+       $g(\theta) = \theta$  
         Normalising constant; $h(t) = 1$  
         Natural parameter; $\phi(\theta) = -\theta$  
         Sufficient statistic; $s(t) = t$  
 
 ---
+
 # Q2
 
 ## i)
@@ -37,6 +38,7 @@ The expectation can be rewritten as,
     $$E[T] = exp(\beta_0 + \beta_1 x_1 + \beta_2 x_2)$$
     
 ---
+
 # Q3
 
 ## i)
@@ -53,3 +55,22 @@ The expectation can be rewritten as,
     $$E[T] = exp(\beta_0) = exp(0.96)$$
     $$E[T] = 2.61$$
 - So, a Type A component ($x_1=0$) of Grade 0($x_2=0$) has a expected time to failure of 2.61 units as calculated using $\beta_0$, which can thus be quantified as the log-time to failure of a component of this specification.
+
+## iii)
+
+- From the MCMC output, the parameter that corresponds to the type of component `b_typeB` ($beta_1$) is only used when the component is type B and thus its coefficient can be taken to represent the effect of the component time on the expected time to failure.
+- The expected time to failure, 
+    $$E[T] = exp(\beta_0 + \beta_1 x_1 + \beta_2 x_2)$$
+- The expected time is monotonic with respect to each of the parameters; a higher value of any coefficients indicates a higher time to failure and lower values indicates lower time to failure.
+- The estimated value of the parameter `b_typeB` is -0.50 with a 95% confidence interval of [-0.88, -0.11], which does not include 0 and is statistically significant.
+- Thus it can be stated with high confidence that the component type affects the expected time to failure, with type A components taking a longer time to fail on average.
+
+## iv)
+
+- For assessing the time to failure of components, the type of component seems more important than the grade.
+- The coefficient for $x_1$ (type) is estimated at -0.50 with a 95% confidence interval of [-0.88, -0.11] which does not include 0. Thus we can say the parameter has a significant effect on the result with low uncertainty.
+- Whereas the coefficient for $x_2$ (grade) is estimated at -0.13 with a 95% confidence interval of [-0.27, 0.01] which has a relatively higher density around 0 suggesting higher uncertainty and does not provide enough evidence to conclude that its effect is statistically significant.
+- The larger magnitude of the coefficient of the type also implies a higher impact on the expected time to failure.
+- The higher magnitude of the estimate and the relatively lower posterior uncertainty imply that the type of the component is more important than the grade when assessing the time to failure of the components.
+
+---
